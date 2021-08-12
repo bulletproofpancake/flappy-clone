@@ -1062,13 +1062,14 @@ MonoBehaviour:
     Don''t go too low or too
     high or you will lose.
 
-    Orange pills make you larger but makes you gain more
+    Orange pills make you larger and make you gain more
     points.
 
-    Blue pills make you smaller but doesn''t earn as much as the orange
+    Blue pills make you smaller but won''t earn as much as the orange
     pill.
 
-    Picking up pills while a power up is active will make you earn points.'
+    Picking up pills while a power up is active will make you earn more
+    points.'
 --- !u!222 &1720595623
 CanvasRenderer:
   m_ObjectHideFlags: 0
