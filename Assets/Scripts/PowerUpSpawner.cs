@@ -17,13 +17,13 @@ public class PowerUpSpawner : MonoBehaviour
         var random = Random.Range(0, 101);
 
         // if random is
-        // 0 - 40: no power up will spawn
-        // 41 - 60: scale down power up will spawn 
-        // 61 - 100: scale up power up will spawn
+        // 0 - 80: no power up will spawn
+        // 81 - 90: scale down power up will spawn 
+        // 91 - 100: scale up power up will spawn
 
-        if (random <= 40) return;
+        if (random <= 80) return;
 
-        if (random <= 60)
+        if (random <= 90)
         {
             var powerUp = scaleDownPool.GetPooledObject();
             powerUp.transform.position = transform.position;
