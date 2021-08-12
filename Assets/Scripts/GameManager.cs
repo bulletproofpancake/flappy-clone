@@ -18,5 +18,6 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         ScoreManager.Instance.ClearScore();
+        print("Game Over");
     }
 }

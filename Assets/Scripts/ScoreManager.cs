@@ -34,6 +34,12 @@ public class ScoreManager : MonoBehaviour
         scoreDisplay.text = $"Score: {_score:000}";
     }
 
+    public void AddScore(int points)
+    {
+        _score += points;
+        scoreDisplay.text = $"Score: {_score:000}";
+    }
+    
     public void ClearScore()
     {
         _score = 0;

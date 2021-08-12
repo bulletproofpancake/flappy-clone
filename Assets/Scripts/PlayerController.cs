@@ -3,9 +3,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float jumpForce;
-    [SerializeField] private Vector2 minScale, maxScale;
-    
+
     private Rigidbody2D _rigidbody;
+    
+    private bool _isPowerUpActive;
+    private PowerUpData _activePowerUp;
+    private float _powerUpTimer;
 
     private void Awake()
     {
@@ -16,14 +19,20 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
-
-        if(Input.GetKeyDown(KeyCode.Q))
-            ScaleDown();
-        if(Input.GetKeyDown(KeyCode.W))
-            ScaleUp();
-        if(Input.GetKeyDown(KeyCode.E))
-            ScaleOne();
-        
+        if (!_isPowerUpActive)
+        {
+            NormalScale();
+            _powerUpTimer = 0f;
+        }
+        else
+        {
+            if (_activePowerUp == null) return;
+            
+            if (_powerUpTimer < _activePowerUp.ActiveTime)
+                _powerUpTimer += Time.deltaTime;
+            else
+                _isPowerUpActive = false;
+        }
     }
 
     private void Jump()
@@ -33,29 +42,29 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.CompareTag("Ground") || other.collider.CompareTag("Pipe"))
-        {
+        if (other.collider.CompareTag("Pipe"))
             GameManager.Instance.GameOver();
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("PipeScore"))
             ScoreManager.Instance.AddScore();
+        if (other.CompareTag("PowerUp"))
+        {
+            _isPowerUpActive = true;
+            _activePowerUp = other.GetComponent<PowerUp>().Data;
+            ScoreManager.Instance.AddScore(_activePowerUp.Points);
+            PowerUpScale(_activePowerUp.Size);
+        }
     }
     
-    private void ScaleDown()
+    private void PowerUpScale(Vector2 size)
     {
-        transform.localScale = new Vector3(minScale.x, minScale.y);
+        transform.localScale = size;
     }
 
-    private void ScaleUp()
-    {
-        transform.localScale = new Vector3(maxScale.x, maxScale.y);
-    }
-
-    private void ScaleOne()
+    private void NormalScale()
     {
         transform.localScale = Vector3.one;
     }
