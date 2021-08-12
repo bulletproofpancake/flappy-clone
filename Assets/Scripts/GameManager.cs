@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public event Action OnGameStart;
     public event Action OnGameOver;
-
+    
+    private bool _isPlayable;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -18,19 +20,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Update()
     {
-        GameStart();
-    }
-
-    public void GameOver()
-    {
-        OnGameOver?.Invoke();
-        print("Game Over");
+        if (Input.GetKeyDown(KeyCode.Space) && !_isPlayable)
+        {
+            _isPlayable = true;
+            GameStart();
+        }
     }
 
     public void GameStart()
     {
         OnGameStart?.Invoke();
     }
+    
+    public void GameOver()
+    {
+        OnGameOver?.Invoke();
+        print("Game Over");
+    }
+
 }

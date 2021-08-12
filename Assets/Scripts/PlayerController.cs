@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,16 +10,34 @@ public class PlayerController : MonoBehaviour
     private bool _isPowerUpActive;
     private PowerUpData _activePowerUp;
     private float _powerUpTimer;
-
+    private bool _isPlayable;
+    
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
+    private void OnEnable()
+    {
+        GameManager.Instance.OnGameStart += BecomePlayable;
+        GameManager.Instance.OnGameOver += BecomeUnplayable;
+    }
+    
+    private void OnDisable()
+    {
+        GameManager.Instance.OnGameStart -= BecomePlayable;
+        GameManager.Instance.OnGameOver -= BecomeUnplayable;
+    }
+    
     private void Update()
     {
+        _rigidbody.bodyType = !_isPlayable ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
+        
+        if (!_isPlayable) return;
+        
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
+        
         if (!_isPowerUpActive)
         {
             NormalScale();
@@ -86,4 +105,8 @@ public class PlayerController : MonoBehaviour
     {
         transform.localScale = Vector3.one;
     }
+
+    private void BecomePlayable() { _isPlayable = true; }
+    private void BecomeUnplayable() { _isPlayable = false; }
+
 }
