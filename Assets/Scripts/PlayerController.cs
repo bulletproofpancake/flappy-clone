@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -23,5 +21,13 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         _rigidbody.velocity = Vector2.up * jumpForce;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Ground") || other.collider.CompareTag("Pipe"))
+        {
+            print("Game over");
+        }
     }
 }
