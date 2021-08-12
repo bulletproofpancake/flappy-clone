@@ -44,18 +44,21 @@ public class PlayerController : MonoBehaviour
     {
         if (other.collider.CompareTag("Pipe"))
             GameManager.Instance.GameOver();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("PipeScore"))
             ScoreManager.Instance.AddScore();
+        
         if (other.CompareTag("PowerUp"))
         {
             _isPowerUpActive = true;
             _activePowerUp = other.GetComponent<PowerUp>().Data;
             ScoreManager.Instance.AddScore(_activePowerUp.Points);
             PowerUpScale(_activePowerUp.Size);
+            other.gameObject.SetActive(false);
         }
     }
     
