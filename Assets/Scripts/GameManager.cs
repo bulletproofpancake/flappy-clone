@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public event Action OnGameStart;
+    public event Action OnGameOver;
 
     private void Awake()
     {
@@ -15,9 +18,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        GameStart();
+    }
+
     public void GameOver()
     {
-        ScoreManager.Instance.ClearScore();
+        OnGameOver?.Invoke();
         print("Game Over");
+    }
+
+    public void GameStart()
+    {
+        OnGameStart?.Invoke();
     }
 }

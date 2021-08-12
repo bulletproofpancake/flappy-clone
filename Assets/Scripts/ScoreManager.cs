@@ -23,6 +23,16 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        GameManager.Instance.OnGameOver += ClearScore;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnGameOver -= ClearScore;
+    }
+
     private void Start()
     {
         scoreDisplay.text = $"Score: {_score:000}";
@@ -40,7 +50,7 @@ public class ScoreManager : MonoBehaviour
         scoreDisplay.text = $"Score: {_score:000}";
     }
     
-    public void ClearScore()
+    private void ClearScore()
     {
         _score = 0;
         scoreDisplay.text = $"Score: {_score:000}";
