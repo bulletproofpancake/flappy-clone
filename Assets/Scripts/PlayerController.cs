@@ -30,4 +30,10 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.GameOver();
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("PipeScore"))
+            ScoreManager.Instance.AddScore();
+    }
 }
