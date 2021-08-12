@@ -4,10 +4,12 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private Text scoreDisplay;
+    [SerializeField] private Text highScoreDisplay;
 
     public static ScoreManager Instance;
 
     private int _score;
+    private int _hiScore;
 
     private void Awake()
     {
@@ -22,12 +24,12 @@ public class ScoreManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnGameOver += ClearScore;
+        GameManager.Instance.OnGameOver += SetHighScore;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnGameOver -= ClearScore;
+        GameManager.Instance.OnGameOver -= SetHighScore;
     }
 
     private void Start()
@@ -52,6 +54,15 @@ public class ScoreManager : MonoBehaviour
         UpdateScore();
     }
 
+    private void SetHighScore()
+    {
+        if (_score > _hiScore)
+            _hiScore = _score;
+        
+        highScoreDisplay.text = $"Hi-Score: {_hiScore:000}";
+        ClearScore();
+    }
+    
     private void ClearScore()
     {
         _score = 0;
