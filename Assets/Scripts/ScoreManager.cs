@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    [SerializeField] private Text scoreDisplay;
+    
     public static ScoreManager Instance;
     
     private int _score;
@@ -19,9 +23,20 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        scoreDisplay.text = $"Score: {_score:000}";
+    }
+
     public void AddScore()
     {
         _score++;
-        print(_score);
+        scoreDisplay.text = $"Score: {_score:000}";
+    }
+
+    public void ClearScore()
+    {
+        _score = 0;
+        scoreDisplay.text = $"Score: {_score:000}";
     }
 }
