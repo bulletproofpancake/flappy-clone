@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private Text _instructionsDisplay;
+    [SerializeField] private Text instructionsDisplay;
     private string _instructions;
     
     public event Action OnGameStart;
@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _instructions = _instructionsDisplay.text;
+        // instructions are cached so that what is written in the editor is used
+        _instructions = instructionsDisplay.text;
     }
 
     private void Update()
@@ -38,10 +39,10 @@ public class GameManager : MonoBehaviour
             GameStart();
         }
         
-        _instructionsDisplay.text = _isPlayable ? string.Empty : _instructions;
+        instructionsDisplay.text = _isPlayable ? string.Empty : _instructions;
     }
 
-    public void GameStart()
+    private void GameStart()
     {
         OnGameStart?.Invoke();
     }

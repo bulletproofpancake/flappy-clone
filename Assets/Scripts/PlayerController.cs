@@ -100,15 +100,8 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void PowerUpScale(Vector2 size)
-    {
-        transform.localScale = size;
-    }
-
-    private void NormalScale()
-    {
-        transform.localScale = Vector3.one;
-    }
+    private void PowerUpScale(Vector2 size) { transform.localScale = size; }
+    private void NormalScale() { transform.localScale = Vector3.one; }
 
     private void BecomePlayable() { _isPlayable = true; }
     private void BecomeUnplayable() { _isPlayable = false; }

@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e69a4e94033a349892a7da1e3756a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _instructionsDisplay: {fileID: 1720595622}
+  instructionsDisplay: {fileID: 1720595622}
 --- !u!1 &858636019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,7 +1022,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: -50, y: 100}
+  m_SizeDelta: {x: -50, y: 150}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1720595622
 MonoBehaviour:
@@ -1049,7 +1049,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 14
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -1066,7 +1066,9 @@ MonoBehaviour:
     points.
 
     Blue pills make you smaller but doesn''t earn as much as the orange
-    pill.'
+    pill.
+
+    Picking up pills while a power up is active will make you earn points.'
 --- !u!222 &1720595623
 CanvasRenderer:
   m_ObjectHideFlags: 0
