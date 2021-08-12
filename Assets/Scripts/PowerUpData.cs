@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "PowerUp", menuName = "Data/New PowerUp")]
     public class PowerUpData : ScriptableObject
