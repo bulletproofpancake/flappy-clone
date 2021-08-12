@@ -11,26 +11,31 @@ public class PlayerController : MonoBehaviour
     private PowerUpData _activePowerUp;
     private float _powerUpTimer;
     private bool _isPlayable;
+    private Vector2 _startingPosition;
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _startingPosition = transform.position;
     }
 
     private void OnEnable()
     {
         GameManager.Instance.OnGameStart += BecomePlayable;
         GameManager.Instance.OnGameOver += BecomeUnplayable;
+        GameManager.Instance.OnGameOver += ResetPlayer;
     }
     
     private void OnDisable()
     {
         GameManager.Instance.OnGameStart -= BecomePlayable;
         GameManager.Instance.OnGameOver -= BecomeUnplayable;
+        GameManager.Instance.OnGameOver -= ResetPlayer;
     }
     
     private void Update()
     {
+        // When the game is not playable, the player cannot move
         _rigidbody.bodyType = !_isPlayable ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
         
         if (!_isPlayable) return;
@@ -108,5 +113,13 @@ public class PlayerController : MonoBehaviour
 
     private void BecomePlayable() { _isPlayable = true; }
     private void BecomeUnplayable() { _isPlayable = false; }
+
+    private void ResetPlayer()
+    {
+        transform.position = _startingPosition;
+        _activePowerUp = null;
+        _isPowerUpActive = false;
+        NormalScale();
+    }
 
 }

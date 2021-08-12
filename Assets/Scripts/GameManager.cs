@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         OnGameOver?.Invoke();
+        _isPlayable = false;
         print("Game Over");
     }
 
