@@ -759,7 +759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f33c3656a84199488c993de537daf0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToSpawn: 3
+  timeToSpawn: 2
   pipePool: {fileID: 1961284571}
 --- !u!1 &1237421790
 GameObject:
