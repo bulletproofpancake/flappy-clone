@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float jumpForce;
+    [SerializeField] private Vector2 minScale, maxScale;
+    
     private Rigidbody2D _rigidbody;
 
     private void Awake()
@@ -15,6 +17,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
 
+        if(Input.GetKeyDown(KeyCode.Q))
+            ScaleDown();
+        if(Input.GetKeyDown(KeyCode.W))
+            ScaleUp();
+        if(Input.GetKeyDown(KeyCode.E))
+            ScaleOne();
+        
     }
 
     private void Jump()
@@ -34,5 +43,20 @@ public class PlayerController : MonoBehaviour
     {
         if(other.CompareTag("PipeScore"))
             ScoreManager.Instance.AddScore();
+    }
+    
+    private void ScaleDown()
+    {
+        transform.localScale = new Vector3(minScale.x, minScale.y);
+    }
+
+    private void ScaleUp()
+    {
+        transform.localScale = new Vector3(maxScale.x, maxScale.y);
+    }
+
+    private void ScaleOne()
+    {
+        transform.localScale = Vector3.one;
     }
 }
