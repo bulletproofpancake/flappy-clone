@@ -13,7 +13,7 @@ public class PipeSpawner : MonoBehaviour
     private void Spawn()
     {
         var pipe = pipePool.GetPooledObject();
-        pipe.transform.position = new Vector3(transform.position.x, transform.position.y + Random.Range(-4, 5));
+        pipe.transform.position = new Vector3(transform.position.x, transform.position.y + Random.Range(-3, 4));
         pipe.SetActive(true);
     }
 }
