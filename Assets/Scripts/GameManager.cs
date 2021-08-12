@@ -1,9 +1,14 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    [SerializeField] private Text _instructionsDisplay;
+    private string _instructions;
+    
     public event Action OnGameStart;
     public event Action OnGameOver;
     
@@ -20,6 +25,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        _instructions = _instructionsDisplay.text;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && !_isPlayable)
@@ -27,6 +37,8 @@ public class GameManager : MonoBehaviour
             _isPlayable = true;
             GameStart();
         }
+        
+        _instructionsDisplay.text = _isPlayable ? string.Empty : _instructions;
     }
 
     public void GameStart()

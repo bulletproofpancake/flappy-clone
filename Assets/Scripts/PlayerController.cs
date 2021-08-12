@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.CompareTag("Pipe"))
+        if (other.collider.CompareTag("Pipe") || other.collider.CompareTag("Ground"))
             GameManager.Instance.GameOver();
         
     }
