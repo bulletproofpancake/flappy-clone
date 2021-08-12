@@ -31,7 +31,10 @@ public class PlayerController : MonoBehaviour
             if (_powerUpTimer < _activePowerUp.ActiveTime)
                 _powerUpTimer += Time.deltaTime;
             else
+            {
                 _isPowerUpActive = false;
+                _activePowerUp = null;
+            }
         }
     }
 
@@ -50,14 +53,26 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("PipeScore"))
-            ScoreManager.Instance.AddScore();
+        {
+            if(!_isPowerUpActive)
+                ScoreManager.Instance.AddScore();
+            else
+                ScoreManager.Instance.AddScore(_activePowerUp.Points);
+        }
         
         if (other.CompareTag("PowerUp"))
         {
-            _isPowerUpActive = true;
-            _activePowerUp = other.GetComponent<PowerUp>().Data;
-            ScoreManager.Instance.AddScore(_activePowerUp.Points);
-            PowerUpScale(_activePowerUp.Size);
+            var powerUp = other.GetComponent<PowerUp>();
+            if(_activePowerUp == null && !_isPowerUpActive)
+            {
+                _isPowerUpActive = true;
+                _activePowerUp = powerUp.Data;
+                PowerUpScale(_activePowerUp.Size);
+            }
+            else
+            {
+                ScoreManager.Instance.AddScore(powerUp.Data.Points);
+            }
             other.gameObject.SetActive(false);
         }
     }

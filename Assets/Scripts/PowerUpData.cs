@@ -5,10 +5,10 @@ using UnityEngine.Serialization;
     public class PowerUpData : ScriptableObject
     {        
         [SerializeField] private float activeTime;
-        [SerializeField] private Vector2 size;
         [SerializeField] private int points;
+        [SerializeField] private Vector2 size;
         
         public float ActiveTime => activeTime;
-        public Vector2 Size => size;
         public int Points => points;
+        public Vector2 Size => size;
     }

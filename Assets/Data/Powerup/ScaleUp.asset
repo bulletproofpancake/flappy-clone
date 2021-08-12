@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fca7947ee43447186c9c2695c0ce694, type: 3}
   m_Name: ScaleUp
   m_EditorClassIdentifier: 
-  activeTime: 3
+  activeTime: 10
+  points: 4
   size: {x: 1.75, y: 1.75}
