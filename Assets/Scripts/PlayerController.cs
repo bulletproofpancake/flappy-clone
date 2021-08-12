@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.collider.CompareTag("Ground") || other.collider.CompareTag("Pipe"))
         {
-            print("Game over");
+            GameManager.Instance.GameOver();
         }
     }
 }
