@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce;
     private Rigidbody2D _rigidbody;
 
-    private void Start()
+    private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
