@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
             {
                 _isPowerUpActive = false;
                 _activePowerUp = null;
+                AudioManager.Instance.Play("PowerUpOff");
             }
         }
     }

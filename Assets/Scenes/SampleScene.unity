@@ -191,7 +191,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.6132076, g: 0.15850833, b: 0.5640681, a: 0}
+  m_BackGroundColor: {r: 0.5188679, g: 0.21244214, b: 0.4686775, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -584,7 +584,7 @@ MonoBehaviour:
   sounds:
   - name: BGM
     clip: {fileID: 8300000, guid: 156dd346d4d9e7d48ae99973869bef6a, type: 3}
-    volume: 0.5
+    volume: 0.15
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -614,6 +614,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Score
     clip: {fileID: 8300000, guid: d8a9a7e934daec7429e942163a6b4c9c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PowerUpOff
+    clip: {fileID: 8300000, guid: d4dca1a59650a3445b9dea24bd16521a, type: 3}
     volume: 1
     pitch: 1
     loop: 0
