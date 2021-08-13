@@ -64,12 +64,16 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         _rigidbody.velocity = Vector2.up * jumpForce;
+        AudioManager.Instance.Play("Jump");
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.CompareTag("Pipe") || other.collider.CompareTag("Ground"))
+        {
+            AudioManager.Instance.Play("Fail");
             GameManager.Instance.GameOver();
+        }
         
     }
 
@@ -81,6 +85,7 @@ public class PlayerController : MonoBehaviour
                 ScoreManager.Instance.AddScore();
             else
                 ScoreManager.Instance.AddScore(_activePowerUp.Points);
+            AudioManager.Instance.Play("Score");
         }
         
         if (other.CompareTag("PowerUp"))
@@ -96,6 +101,8 @@ public class PlayerController : MonoBehaviour
             {
                 ScoreManager.Instance.AddScore(powerUp.Data.Points);
             }
+            //Only works if the name of the power up scriptable object is the same as the name in the audioManager
+            AudioManager.Instance.Play(_activePowerUp.name);
             other.gameObject.SetActive(false);
         }
     }

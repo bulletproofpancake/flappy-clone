@@ -32,12 +32,14 @@ public class GameManager : Singleton<GameManager>
     private void GameStart()
     {
         OnGameStart?.Invoke();
+        AudioManager.Instance.Play("BGM");
     }
     
     public void GameOver()
     {
         OnGameOver?.Invoke();
         _isPlayable = false;
+        AudioManager.Instance.Stop("BGM");
     }
 
 }

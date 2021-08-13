@@ -19,7 +19,7 @@ public class PipeSpawner : MonoBehaviour
 
     private void SpawnPipes()
     {
-        InvokeRepeating("Spawn", 3f, timeToSpawn);
+        InvokeRepeating("Spawn", 1.5f, timeToSpawn);
     }
 
     private void Spawn()
