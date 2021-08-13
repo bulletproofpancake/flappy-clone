@@ -1,26 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : Singleton<ScoreManager>
 {
     [SerializeField] private Text scoreDisplay;
     [SerializeField] private Text highScoreDisplay;
-
-    public static ScoreManager Instance;
-
+    
     private int _score;
     private int _hiScore;
-
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-        {
-            if (Instance != this)
-                Destroy(gameObject);
-        }
-    }
 
     private void OnEnable()
     {

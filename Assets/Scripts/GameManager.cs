@@ -2,10 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance;
-
     [SerializeField] private Text instructionsDisplay;
     private string _instructions;
     
@@ -13,17 +11,6 @@ public class GameManager : MonoBehaviour
     public event Action OnGameOver;
     
     private bool _isPlayable;
-    
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-        {
-            if (Instance != this)
-                Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {
